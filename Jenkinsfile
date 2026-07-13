@@ -44,5 +44,25 @@ pipeline {
             }
         }
 
+        stage('AWS ECR Push') {
+    steps {
+        withCredentials([usernamePassword(
+            credentialsId: 'aws-ecr',
+            usernameVariable: 'AWS_ACCESS_KEY_ID',
+            passwordVariable: 'AWS_SECRET_ACCESS_KEY'
+        )]) {
+            sh '''
+            aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 643603452212.dkr.ecr.eu-north-1.amazonaws.com
+
+            docker tag thabith12/food-backend:v2 643603452212.dkr.ecr.eu-north-1.amazonaws.com/food-backend:v2
+            docker tag thabith12/food-frontend:v2 643603452212.dkr.ecr.eu-north-1.amazonaws.com/food-frontend:v2
+
+            docker push 643603452212.dkr.ecr.eu-north-1.amazonaws.com/food-backend:v2
+            docker push 643603452212.dkr.ecr.eu-north-1.amazonaws.com/food-frontend:v2
+            '''
+        }
+    }
+}
+
     }
 }

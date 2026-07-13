@@ -30,10 +30,10 @@ pipeline {
                 withCredentials([usernamePassword(
                     credentialsId: 'dockerhub',
                     usernameVariable: 'thabith12',
-                    passwordVariable: 'thabith4136#'
+                    passwordVariable: 'dckr_pat_4uoyFA3Dkwfr_UuXCWCHjQzgiCE'
                 )]) {
                     sh '''
-                    echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+                    echo "dckr_pat_4uoyFA3Dkwfr_UuXCWCHjQzgiCE" | docker login -u "thabith12" --password-stdin
 
                     docker push thabith12/food-backend:v2
                     docker push thabith12/food-frontend:v2

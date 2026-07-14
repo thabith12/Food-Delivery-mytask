@@ -63,6 +63,14 @@ pipeline {
         }
     }
 }
+stage('Remove Local Images') {
+    steps {
+        sh '''
+        docker rmi thabith12/food-backend:v2 || true
+        docker rmi thabith12/food-frontend:v2 || true
+        '''
+    }
+}
 
     }
 }

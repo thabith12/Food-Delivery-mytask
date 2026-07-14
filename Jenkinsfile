@@ -69,12 +69,13 @@ stage('Remove Local Images') {
         docker rmi thabith12/food-backend:v2 || true
         docker rmi thabith12/food-frontend:v2 || true
         '''
-    }
+ }
 }
 stage('Deploy with Docker Compose') {
     steps {
         sh '''
         docker-compose pull
+        docker-compose down || true
         docker-compose up -d
         '''
     }
@@ -84,10 +85,9 @@ stage('Verify Deployment') {
     steps {
         sh '''
         docker ps
-        docker compose ps
+        docker-compose ps
         '''
     }
 }
-
     }
 }

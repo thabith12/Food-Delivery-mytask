@@ -1,4 +1,4 @@
-# Stage 1 - Build Stage
+# Stage 1 - Build React App
 FROM node:20-alpine AS builder
 
 WORKDIR /app
@@ -9,19 +9,14 @@ RUN npm install
 
 COPY . .
 
-# Stage 2 - Production Stage
-FROM node:20-alpine
+RUN npm run build
 
-WORKDIR /app
 
-COPY --from=builder /app .
+# Stage 2 - Serve with Nginx
+FROM nginx:alpine
 
-RUN addgroup -S appgroup && \
-    adduser -S appuser -G appgroup && \
-    chown -R appuser:appgroup /app
+COPY --from=builder /app/dist /usr/share/nginx/html
 
-USER appuser
+EXPOSE 80
 
-EXPOSE 5173
-
-CMD ["npm", "run", "dev", "--", "--host"]
+CMD ["nginx", "-g", "daemon off;"]

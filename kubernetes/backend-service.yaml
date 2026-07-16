@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: food-backend-service
+
+spec:
+  selector:
+    app: food-backend
+
+  ports:
+    - port: 4000
+      targetPort: 4000
+
+  type: ClusterIP

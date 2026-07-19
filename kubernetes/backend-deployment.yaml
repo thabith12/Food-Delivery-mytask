@@ -3,6 +3,7 @@ kind: Deployment
 
 metadata:
   name: food-backend
+  namespace: food-app
 
 spec:
   replicas: 2
@@ -18,39 +19,67 @@ spec:
 
     spec:
       containers:
-        - name: backend
 
-          image: thabith12/food-backend:v3
+      - name: backend
 
-          imagePullPolicy: IfNotPresent
+        image: thabith12/food-backend:v3
 
-          ports:
-            - containerPort: 4000
+        imagePullPolicy: IfNotPresent
 
-          env:
-            - name: PORT
-              value: "4000"
+        ports:
+        - containerPort: 4000
 
-            - name: MONGO_URL
-              value: "mongodb://mongodb-service:27017/food-delivery"
 
-            - name: JWT_SECRET
-              value: "your_jwt_secret_key_here"
+        env:
 
-            - name: SALT
-              value: "10"
+        - name: PORT
+          valueFrom:
+            configMapKeyRef:
+              name: food-config
+              key: PORT
 
-            - name: STRIPE_SECRET_KEY
-              value: "sk_test_your_stripe_secret_key_here"
 
-            - name: FRONTEND_URL
-              value: "http://16.171.145.71:30080"
+        - name: MONGO_URL
+          valueFrom:
+            configMapKeyRef:
+              name: food-config
+              key: MONGO_URL
 
-          resources:
-            requests:
-              memory: "256Mi"
-              cpu: "250m"
 
-            limits:
-              memory: "512Mi"
-              cpu: "500m"
+        - name: FRONTEND_URL
+          valueFrom:
+            configMapKeyRef:
+              name: food-config
+              key: FRONTEND_URL
+
+
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: food-secret
+              key: JWT_SECRET
+
+
+        - name: MONGO_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: food-secret
+              key: MONGO_USERNAME
+
+
+        - name: MONGO_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: food-secret
+              key: MONGO_PASSWORD
+
+
+        resources:
+
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+
+          limits:
+            memory: "512Mi"
+            cpu: "500m"

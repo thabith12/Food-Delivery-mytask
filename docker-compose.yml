@@ -32,7 +32,7 @@ services:
     image: thabith12/food-frontend:v2
     container_name: food-frontend-container
     ports:
-      - "5173:5173"
+      - "5173:80"
     depends_on:
       - backend
     networks:

@@ -3,6 +3,7 @@ kind: Deployment
 
 metadata:
   name: food-frontend
+  namespace: food-app
 
 spec:
   replicas: 2

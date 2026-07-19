@@ -30,4 +30,4 @@ spec:
 
           env:
             - name: VITE_BACKEND_URL
-              value: "http://food-backend-service:4000"
+              value: 'http://food-backend-service:4000'

@@ -3,6 +3,7 @@ kind: Deployment
 
 metadata:
   name: food-frontend
+  namespace: food-app
 
 spec:
   replicas: 2
@@ -22,11 +23,11 @@ spec:
 
           image: thabith12/food-frontend:v4
 
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
 
           ports:
             - containerPort: 80
 
           env:
             - name: VITE_BACKEND_URL
-              value: "http://food-backend-service:4000"
+              value: 'http://food-backend-service:4000'

@@ -22,7 +22,7 @@ spec:
 
           image: thabith12/food-backend:v3
 
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
 
           ports:
             - containerPort: 4000

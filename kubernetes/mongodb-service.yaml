@@ -3,8 +3,11 @@ kind: Service
 
 metadata:
   name: mongodb-service
+  namespace: food-app
 
 spec:
+  clusterIP: None
+
   selector:
     app: mongodb
 
@@ -12,5 +15,3 @@ spec:
     - protocol: TCP
       port: 27017
       targetPort: 27017
-
-  type: ClusterIP

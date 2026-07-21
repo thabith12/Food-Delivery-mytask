@@ -14,4 +14,4 @@ export const assets ={
     parcel_icon
 }
 
-export const url = import.meta.env.VITE_BACKEND_URL || (window.location.hostname === "localhost" ? "http://localhost:4000" : `http://${window.location.hostname}:4000`);
+export const url = import.meta.env.VITE_BACKEND_URL || (window.location.hostname === "localhost" ? "http://localhost:4000" : `http://${window.location.hostname}:30040`);

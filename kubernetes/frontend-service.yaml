@@ -3,6 +3,7 @@ kind: Service
 
 metadata:
   name: food-frontend-service
+  namespace: food-app
 
 spec:
   selector:

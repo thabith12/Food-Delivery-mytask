@@ -1,0 +1,70 @@
+namespace: food-app
+
+frontend:
+  name: food-frontend
+  containerName: frontend
+  replicaCount: 2
+  image: thabith12/food-frontend:v6
+  imagePullPolicy: IfNotPresent
+  containerPort: 80
+  backendUrl: http://13.53.49.223
+  serviceName: food-frontend-service
+  servicePort: 80
+  serviceType: ClusterIP
+
+
+backend:
+  name: food-backend
+  containerName: backend
+  replicaCount: 2
+  image: thabith12/food-backend:v3
+  imagePullPolicy: IfNotPresent
+  containerPort: 4000
+  serviceName: food-backend-service
+  servicePort: 4000
+  serviceType: ClusterIP
+
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "250m"
+
+    limits:
+      memory: "512Mi"
+      cpu: "500m"
+
+
+config:
+  name: food-config
+  PORT: "4000"
+
+  MONGO_URL: "mongodb://admin:password123@mongodb-service:27017/food-delivery?authSource=admin"
+
+  FRONTEND_URL: "http://13.53.49.223"
+
+
+secret:
+  name: food-secret
+
+  JWT_SECRET: "fooddeliverysecret"
+
+  MONGO_USERNAME: "admin"
+
+  MONGO_PASSWORD: "password123"
+
+
+mongodb:
+  name: mongodb
+  containerName: mongodb
+  replicaCount: 1
+  image: mongo:7
+  imagePullPolicy: IfNotPresent
+  containerPort: 27017
+  serviceName: mongodb-service
+  servicePort: 27017
+  pvcName: mongodb-storage
+
+
+ingress:
+  name: food-ingress
+  className: nginx

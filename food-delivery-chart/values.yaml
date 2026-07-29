@@ -7,7 +7,7 @@ frontend:
   image: thabith12/food-frontend:v6
   imagePullPolicy: IfNotPresent
   containerPort: 80
-  backendUrl: http://16.171.25.196
+  backendUrl: http://13.53.49.223
   serviceName: food-frontend-service
   servicePort: 80
   serviceType: ClusterIP
@@ -40,7 +40,7 @@ config:
 
   MONGO_URL: "mongodb://admin:password123@mongodb-service:27017/food-delivery?authSource=admin"
 
-  FRONTEND_URL: "http://16.171.25.196"
+  FRONTEND_URL: "http://13.53.49.223"
 
 
 secret:

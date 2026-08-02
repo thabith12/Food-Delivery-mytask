@@ -21,7 +21,7 @@ backend:
   replicaCount: 2
   image:
     repository: thabith12/food-backend
-    tag: v3
+    tag: v5
   imagePullPolicy: IfNotPresent
   containerPort: 4000
   serviceName: food-backend-service

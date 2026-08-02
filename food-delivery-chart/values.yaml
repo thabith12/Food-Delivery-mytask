@@ -4,7 +4,9 @@ frontend:
   name: food-frontend
   containerName: frontend
   replicaCount: 2
-  image: thabith12/food-frontend:v6
+  image:
+    repository: thabith12/food-frontend
+    tag: v6
   imagePullPolicy: IfNotPresent
   containerPort: 80
   backendUrl: http://13.53.49.223
@@ -17,7 +19,9 @@ backend:
   name: food-backend
   containerName: backend
   replicaCount: 2
-  image: thabith12/food-backend:v3
+  image:
+    repository: thabith12/food-backend
+    tag: v3
   imagePullPolicy: IfNotPresent
   containerPort: 4000
   serviceName: food-backend-service

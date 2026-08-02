@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+
+metadata:
+  name: food-app
+  namespace: argocd
+
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/thabith12/Food-Delivery-mytask
+    targetRevision: feature/thabith12
+    path: food-delivery-chart
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: food-app
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

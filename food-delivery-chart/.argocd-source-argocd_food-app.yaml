@@ -1,0 +1,14 @@
+helm:
+  parameters:
+  - name: backend.image.repository
+    value: thabith12/food-backend
+    forcestring: true
+  - name: backend.image.tag
+    value: v5
+    forcestring: true
+  - name: frontend.image.repository
+    value: thabith12/food-frontend
+    forcestring: true
+  - name: frontend.image.tag
+    value: v9
+    forcestring: true

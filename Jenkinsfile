@@ -1,93 +1,116 @@
 pipeline {
+
     agent any
+
+    environment {
+        BACKEND_IMAGE = "thabith12/food-backend"
+        FRONTEND_IMAGE = "thabith12/food-frontend"
+
+        VERSION = "v6"
+    }
+
 
     stages {
 
-        stage('Test Connection') {
+        stage('Checkout Code') {
             steps {
-                echo 'Jenkins connected successfully'
+                git branch: 'feature/thabith12',
+                url: 'https://github.com/thabith12/Food-Delivery-mytask.git'
             }
         }
+
 
         stage('Docker Build Backend') {
             steps {
                 sh '''
-                docker build -t thabith12/food-backend:v2 ./backend
+                docker build -t $BACKEND_IMAGE:$VERSION ./backend
                 '''
             }
         }
+
 
         stage('Docker Build Frontend') {
             steps {
                 sh '''
-                docker build -t thabith12/food-frontend:v2 ./frontend
+                docker build -t $FRONTEND_IMAGE:$VERSION ./frontend
                 '''
             }
         }
 
-        stage('Docker Hub Push') {
+
+        stage('Docker Hub Login') {
             steps {
-                withCredentials([usernamePassword(
+
+                withCredentials([
+                    usernamePassword(
                     credentialsId: 'dockerhub',
-                    usernameVariable: 'thabith12',
-                    passwordVariable: 'dckr_pat_4uoyFA3Dkwfr_UuXCWCHjQzgiCE'
-                )]) {
+                    usernameVariable: 'DOCKER_USER',
+                    passwordVariable: 'DOCKER_PASS'
+                    )
+                ]) {
+
                     sh '''
-                    echo "dckr_pat_4uoyFA3Dkwfr_UuXCWCHjQzgiCE" | docker login -u "thabith12" --password-stdin
-
-                    docker push thabith12/food-backend:v2
-                    docker push thabith12/food-frontend:v2
-
-                    docker logout
+                    echo $DOCKER_PASS | docker login \
+                    -u $DOCKER_USER \
+                    --password-stdin
                     '''
+
                 }
+
             }
         }
 
-        stage('AWS ECR Push') {
-    steps {
-        withCredentials([usernamePassword(
-            credentialsId: 'aws-ecr',
-            usernameVariable: 'AWS_ACCESS_KEY_ID',
-            passwordVariable: 'AWS_SECRET_ACCESS_KEY'
-        )]) {
-            sh '''
-            aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 643603452212.dkr.ecr.eu-north-1.amazonaws.com
 
-            docker tag thabith12/food-backend:v2 643603452212.dkr.ecr.eu-north-1.amazonaws.com/food-backend:v2
-            docker tag thabith12/food-frontend:v2 643603452212.dkr.ecr.eu-north-1.amazonaws.com/food-frontend:v2
+        stage('Push Images') {
 
-            docker push 643603452212.dkr.ecr.eu-north-1.amazonaws.com/food-backend:v2
-            docker push 643603452212.dkr.ecr.eu-north-1.amazonaws.com/food-frontend:v2
-            '''
+            steps {
+
+                sh '''
+
+                docker push $BACKEND_IMAGE:$VERSION
+
+                docker push $FRONTEND_IMAGE:$VERSION
+
+                '''
+
+            }
+
         }
-    }
-}
-stage('Remove Local Images') {
-    steps {
-        sh '''
-        docker rmi thabith12/food-backend:v2 || true
-        docker rmi thabith12/food-frontend:v2 || true
-        '''
- }
-}
-stage('Deploy with Docker Compose') {
-    steps {
-        sh '''
-        docker-compose pull
-        docker-compose down || true
-        docker-compose up -d
-        '''
-    }
-}
 
-stage('Verify Deployment') {
-    steps {
-        sh '''
-        docker ps
-        docker-compose ps
-        '''
+
+        stage('Verify Images') {
+
+            steps {
+
+                sh '''
+
+                docker images | grep food
+
+                '''
+
+            }
+
+        }
+
+
     }
-}
+
+
+    post {
+
+        success {
+
+            echo "Docker images pushed successfully. ArgoCD Image Updater will update Kubernetes."
+
+        }
+
+
+        failure {
+
+            echo "Pipeline failed"
+
+        }
+
     }
+
 }

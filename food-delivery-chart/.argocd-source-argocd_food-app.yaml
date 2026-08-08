@@ -10,5 +10,5 @@ helm:
     value: thabith12/food-frontend
     forcestring: true
   - name: frontend.image.tag
-    value: v9
+    value: v6
     forcestring: true

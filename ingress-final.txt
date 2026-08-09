@@ -1,0 +1,2 @@
+NAMESPACE   NAME           CLASS   HOSTS   ADDRESS     PORTS   AGE
+green       food-ingress   nginx   *       localhost   80      14m

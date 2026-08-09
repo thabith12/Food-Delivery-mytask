@@ -1,0 +1,4 @@
+NAME                    TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)     AGE
+food-backend-service    ClusterIP   10.96.57.123    <none>        4000/TCP    105m
+food-frontend-service   ClusterIP   10.96.242.113   <none>        80/TCP      105m
+mongodb-service         ClusterIP   None            <none>        27017/TCP   106m

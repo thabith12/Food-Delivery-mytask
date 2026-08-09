@@ -1,0 +1,6 @@
+NAME                            READY   STATUS    RESTARTS   AGE    IP            NODE                         NOMINATED NODE   READINESS GATES
+food-backend-756586745-l5rgz    1/1     Running   0          135m   10.244.0.6    food-cluster-control-plane   <none>           <none>
+food-backend-756586745-nvp8s    1/1     Running   0          135m   10.244.0.7    food-cluster-control-plane   <none>           <none>
+food-frontend-f48db5bb8-v9dqh   1/1     Running   0          135m   10.244.0.8    food-cluster-control-plane   <none>           <none>
+food-frontend-f48db5bb8-vhlr6   1/1     Running   0          135m   10.244.0.9    food-cluster-control-plane   <none>           <none>
+mongodb-0                       1/1     Running   0          135m   10.244.0.10   food-cluster-control-plane   <none>           <none>

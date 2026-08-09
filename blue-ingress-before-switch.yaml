@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{},"name":"food-ingress","namespace":"blue"},"spec":{"ingressClassName":"nginx","rules":[{"http":{"paths":[{"backend":{"service":{"name":"food-backend-service","port":{"number":4000}}},"path":"/api","pathType":"Prefix"},{"backend":{"service":{"name":"food-frontend-service","port":{"number":80}}},"path":"/","pathType":"Prefix"}]}}]}}
+  creationTimestamp: "2026-08-09T17:13:47Z"
+  generation: 1
+  name: food-ingress
+  namespace: blue
+  resourceVersion: "860"
+  uid: 7678abd4-7b3c-4d54-bd05-fc9f8aad4a44
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: food-backend-service
+            port:
+              number: 4000
+        path: /api
+        pathType: Prefix
+      - backend:
+          service:
+            name: food-frontend-service
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+status:
+  loadBalancer:
+    ingress:
+    - hostname: localhost

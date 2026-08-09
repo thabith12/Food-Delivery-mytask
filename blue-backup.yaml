@@ -1,0 +1,1302 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2026-08-09T16:48:33Z"
+    generateName: food-backend-756586745-
+    generation: 1
+    labels:
+      app: food-backend
+      pod-template-hash: "756586745"
+    name: food-backend-756586745-5v647
+    namespace: blue
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: food-backend-756586745
+      uid: 9fd1d667-1d33-4c82-8c92-193a75bf027f
+    resourceVersion: "30616"
+    uid: 8c385a3d-2e0c-4317-8988-85632cd9e357
+  spec:
+    containers:
+    - env:
+      - name: PORT
+        valueFrom:
+          configMapKeyRef:
+            key: PORT
+            name: food-config
+      - name: MONGO_URL
+        valueFrom:
+          configMapKeyRef:
+            key: MONGO_URL
+            name: food-config
+      - name: FRONTEND_URL
+        valueFrom:
+          configMapKeyRef:
+            key: FRONTEND_URL
+            name: food-config
+      - name: JWT_SECRET
+        valueFrom:
+          secretKeyRef:
+            key: JWT_SECRET
+            name: food-secret
+      - name: MONGO_USERNAME
+        valueFrom:
+          secretKeyRef:
+            key: MONGO_USERNAME
+            name: food-secret
+      - name: MONGO_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            key: MONGO_PASSWORD
+            name: food-secret
+      image: thabith12/food-backend:v5
+      imagePullPolicy: IfNotPresent
+      name: backend
+      ports:
+      - containerPort: 4000
+        protocol: TCP
+      resources:
+        limits:
+          cpu: 500m
+          memory: 512Mi
+        requests:
+          cpu: 250m
+          memory: 256Mi
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-7njdm
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: food-cluster-control-plane
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-7njdm
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-08-09T16:48:40Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-08-09T16:48:33Z"
+      observedGeneration: 1
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-08-09T16:48:40Z"
+      observedGeneration: 1
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-08-09T16:48:40Z"
+      observedGeneration: 1
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-08-09T16:48:33Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - allocatedResources:
+        cpu: 250m
+        memory: 256Mi
+      containerID: containerd://8102dbe246620b23f13d2eba4449f481fac5e1dfb4bd7efed17ff9a7a0b9fb14
+      image: docker.io/thabith12/food-backend:v5
+      imageID: docker.io/thabith12/food-backend@sha256:e79155a7e9eaa6ee007fe4ee32f67b68b83d797a05633db4711d5dd3d856445e
+      lastState: {}
+      name: backend
+      ready: true
+      resources:
+        limits:
+          cpu: 500m
+          memory: 512Mi
+        requests:
+          cpu: 250m
+          memory: 256Mi
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2026-08-09T16:48:40Z"
+      user:
+        linux:
+          gid: 101
+          supplementalGroups:
+          - 101
+          uid: 100
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-7njdm
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 172.18.0.2
+    hostIPs:
+    - ip: 172.18.0.2
+    observedGeneration: 1
+    phase: Running
+    podIP: 10.244.0.8
+    podIPs:
+    - ip: 10.244.0.8
+    qosClass: Burstable
+    startTime: "2026-08-09T16:48:33Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2026-08-09T16:48:33Z"
+    generateName: food-backend-756586745-
+    generation: 1
+    labels:
+      app: food-backend
+      pod-template-hash: "756586745"
+    name: food-backend-756586745-hhflq
+    namespace: blue
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: food-backend-756586745
+      uid: 9fd1d667-1d33-4c82-8c92-193a75bf027f
+    resourceVersion: "30624"
+    uid: 015c1162-ce76-44e8-ab7d-46bce4cfd718
+  spec:
+    containers:
+    - env:
+      - name: PORT
+        valueFrom:
+          configMapKeyRef:
+            key: PORT
+            name: food-config
+      - name: MONGO_URL
+        valueFrom:
+          configMapKeyRef:
+            key: MONGO_URL
+            name: food-config
+      - name: FRONTEND_URL
+        valueFrom:
+          configMapKeyRef:
+            key: FRONTEND_URL
+            name: food-config
+      - name: JWT_SECRET
+        valueFrom:
+          secretKeyRef:
+            key: JWT_SECRET
+            name: food-secret
+      - name: MONGO_USERNAME
+        valueFrom:
+          secretKeyRef:
+            key: MONGO_USERNAME
+            name: food-secret
+      - name: MONGO_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            key: MONGO_PASSWORD
+            name: food-secret
+      image: thabith12/food-backend:v5
+      imagePullPolicy: IfNotPresent
+      name: backend
+      ports:
+      - containerPort: 4000
+        protocol: TCP
+      resources:
+        limits:
+          cpu: 500m
+          memory: 512Mi
+        requests:
+          cpu: 250m
+          memory: 256Mi
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-gr7rk
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: food-cluster-control-plane
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-gr7rk
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-08-09T16:48:41Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-08-09T16:48:34Z"
+      observedGeneration: 1
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-08-09T16:48:41Z"
+      observedGeneration: 1
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-08-09T16:48:41Z"
+      observedGeneration: 1
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-08-09T16:48:34Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - allocatedResources:
+        cpu: 250m
+        memory: 256Mi
+      containerID: containerd://14524b39b0b6579c8b77822cacaaf82f47d71b48c474092fee65b09ac7025ef6
+      image: docker.io/thabith12/food-backend:v5
+      imageID: docker.io/thabith12/food-backend@sha256:e79155a7e9eaa6ee007fe4ee32f67b68b83d797a05633db4711d5dd3d856445e
+      lastState: {}
+      name: backend
+      ready: true
+      resources:
+        limits:
+          cpu: 500m
+          memory: 512Mi
+        requests:
+          cpu: 250m
+          memory: 256Mi
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2026-08-09T16:48:41Z"
+      user:
+        linux:
+          gid: 101
+          supplementalGroups:
+          - 101
+          uid: 100
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-gr7rk
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 172.18.0.2
+    hostIPs:
+    - ip: 172.18.0.2
+    observedGeneration: 1
+    phase: Running
+    podIP: 10.244.0.9
+    podIPs:
+    - ip: 10.244.0.9
+    qosClass: Burstable
+    startTime: "2026-08-09T16:48:34Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2026-08-09T16:48:34Z"
+    generateName: food-frontend-f48db5bb8-
+    generation: 1
+    labels:
+      app: food-frontend
+      pod-template-hash: f48db5bb8
+    name: food-frontend-f48db5bb8-6pnsd
+    namespace: blue
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: food-frontend-f48db5bb8
+      uid: 75cf2f04-c184-479b-ac94-ae057a03da42
+    resourceVersion: "30642"
+    uid: 34b95172-4bec-4d14-a0c9-8dea1400a868
+  spec:
+    containers:
+    - env:
+      - name: VITE_BACKEND_URL
+        value: http://food-backend-service:4000
+      image: thabith12/food-frontend:v10
+      imagePullPolicy: IfNotPresent
+      name: frontend
+      ports:
+      - containerPort: 80
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-8gvpn
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: food-cluster-control-plane
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-8gvpn
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-08-09T16:48:47Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-08-09T16:48:34Z"
+      observedGeneration: 1
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-08-09T16:48:47Z"
+      observedGeneration: 1
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-08-09T16:48:47Z"
+      observedGeneration: 1
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-08-09T16:48:34Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://a293b3a78df61cf4ef2a2d6c0b4dadb1baa3079d7c86284971298a4152caf2f1
+      image: docker.io/thabith12/food-frontend:v10
+      imageID: docker.io/thabith12/food-frontend@sha256:439b08e6bfd939de5d08f41f921e6c9d9a3536e97e0144e5a866fd59eaf0aaf2
+      lastState: {}
+      name: frontend
+      ready: true
+      resources: {}
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2026-08-09T16:48:47Z"
+      user:
+        linux:
+          gid: 0
+          supplementalGroups:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 6
+          - 10
+          - 11
+          - 20
+          - 26
+          - 27
+          uid: 0
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-8gvpn
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 172.18.0.2
+    hostIPs:
+    - ip: 172.18.0.2
+    observedGeneration: 1
+    phase: Running
+    podIP: 10.244.0.10
+    podIPs:
+    - ip: 10.244.0.10
+    qosClass: BestEffort
+    startTime: "2026-08-09T16:48:34Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2026-08-09T16:48:34Z"
+    generateName: food-frontend-f48db5bb8-
+    generation: 1
+    labels:
+      app: food-frontend
+      pod-template-hash: f48db5bb8
+    name: food-frontend-f48db5bb8-v926r
+    namespace: blue
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: food-frontend-f48db5bb8
+      uid: 75cf2f04-c184-479b-ac94-ae057a03da42
+    resourceVersion: "30652"
+    uid: 94f0a6a4-7bb9-4543-8b72-798fd0a72c31
+  spec:
+    containers:
+    - env:
+      - name: VITE_BACKEND_URL
+        value: http://food-backend-service:4000
+      image: thabith12/food-frontend:v10
+      imagePullPolicy: IfNotPresent
+      name: frontend
+      ports:
+      - containerPort: 80
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-jmn4x
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: food-cluster-control-plane
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-jmn4x
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-08-09T16:48:48Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-08-09T16:48:34Z"
+      observedGeneration: 1
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-08-09T16:48:48Z"
+      observedGeneration: 1
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-08-09T16:48:48Z"
+      observedGeneration: 1
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-08-09T16:48:34Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://2882d95d86990c2d5aa12dec299abfa96027da0f6918164859649d2cab70cc87
+      image: docker.io/thabith12/food-frontend:v10
+      imageID: docker.io/thabith12/food-frontend@sha256:439b08e6bfd939de5d08f41f921e6c9d9a3536e97e0144e5a866fd59eaf0aaf2
+      lastState: {}
+      name: frontend
+      ready: true
+      resources: {}
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2026-08-09T16:48:47Z"
+      user:
+        linux:
+          gid: 0
+          supplementalGroups:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 6
+          - 10
+          - 11
+          - 20
+          - 26
+          - 27
+          uid: 0
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-jmn4x
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 172.18.0.2
+    hostIPs:
+    - ip: 172.18.0.2
+    observedGeneration: 1
+    phase: Running
+    podIP: 10.244.0.11
+    podIPs:
+    - ip: 10.244.0.11
+    qosClass: BestEffort
+    startTime: "2026-08-09T16:48:34Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2026-08-09T16:46:51Z"
+    generateName: mongodb-
+    generation: 1
+    labels:
+      app: mongodb
+      apps.kubernetes.io/pod-index: "0"
+      controller-revision-hash: mongodb-58bbdffc64
+      statefulset.kubernetes.io/pod-name: mongodb-0
+    name: mongodb-0
+    namespace: blue
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: StatefulSet
+      name: mongodb
+      uid: 7b4e39f2-a5f5-4ef0-8693-b75aa6fb6768
+    resourceVersion: "30434"
+    uid: d66f4d65-9808-4ac6-bee0-327086857aa2
+  spec:
+    containers:
+    - env:
+      - name: MONGO_INITDB_ROOT_USERNAME
+        valueFrom:
+          secretKeyRef:
+            key: MONGO_USERNAME
+            name: food-secret
+      - name: MONGO_INITDB_ROOT_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            key: MONGO_PASSWORD
+            name: food-secret
+      image: mongo:7
+      imagePullPolicy: IfNotPresent
+      name: mongodb
+      ports:
+      - containerPort: 27017
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /data/db
+        name: mongodb-data
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-qrllt
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    hostname: mongodb-0
+    nodeName: food-cluster-control-plane
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    subdomain: mongodb-service
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: mongodb-data
+      persistentVolumeClaim:
+        claimName: mongodb-storage
+    - name: kube-api-access-qrllt
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-08-09T16:47:06Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-08-09T16:46:51Z"
+      observedGeneration: 1
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-08-09T16:47:06Z"
+      observedGeneration: 1
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-08-09T16:47:06Z"
+      observedGeneration: 1
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-08-09T16:46:51Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://8217805d1d88e6977d4cdaa54145ebd12cd07e104d4de40c977083b4870cb538
+      image: docker.io/library/mongo:7
+      imageID: docker.io/library/mongo@sha256:35a5926f71f8b6cb19206bee928c5a85f241a8be99f20c81abe35ae78a73415d
+      lastState: {}
+      name: mongodb
+      ready: true
+      resources: {}
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2026-08-09T16:47:05Z"
+      user:
+        linux:
+          gid: 0
+          supplementalGroups:
+          - 0
+          uid: 0
+      volumeMounts:
+      - mountPath: /data/db
+        name: mongodb-data
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-qrllt
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 172.18.0.2
+    hostIPs:
+    - ip: 172.18.0.2
+    observedGeneration: 1
+    phase: Running
+    podIP: 10.244.0.7
+    podIPs:
+    - ip: 10.244.0.7
+    qosClass: BestEffort
+    startTime: "2026-08-09T16:46:51Z"
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"food-backend-service","namespace":"blue"},"spec":{"ports":[{"port":4000,"targetPort":4000}],"selector":{"app":"food-backend"},"type":"ClusterIP"}}
+    creationTimestamp: "2026-08-09T16:48:34Z"
+    name: food-backend-service
+    namespace: blue
+    resourceVersion: "30575"
+    uid: 86d9bd09-1f55-4e95-8bde-99eea55549a4
+  spec:
+    clusterIP: 10.96.157.26
+    clusterIPs:
+    - 10.96.157.26
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - port: 4000
+      protocol: TCP
+      targetPort: 4000
+    selector:
+      app: food-backend
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"food-frontend-service","namespace":"blue"},"spec":{"ports":[{"port":80,"protocol":"TCP","targetPort":80}],"selector":{"app":"food-frontend"},"type":"ClusterIP"}}
+    creationTimestamp: "2026-08-09T16:48:34Z"
+    name: food-frontend-service
+    namespace: blue
+    resourceVersion: "30597"
+    uid: aa94e48f-6959-45f3-89a3-509f5c83e08e
+  spec:
+    clusterIP: 10.96.190.231
+    clusterIPs:
+    - 10.96.190.231
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+    selector:
+      app: food-frontend
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"mongodb-service","namespace":"blue"},"spec":{"clusterIP":"None","ports":[{"port":27017,"targetPort":27017}],"selector":{"app":"mongodb"}}}
+    creationTimestamp: "2026-08-09T16:42:05Z"
+    name: mongodb-service
+    namespace: blue
+    resourceVersion: "29927"
+    uid: 668a456a-88a3-489d-844d-e54169438f4e
+  spec:
+    clusterIP: None
+    clusterIPs:
+    - None
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - port: 27017
+      protocol: TCP
+      targetPort: 27017
+    selector:
+      app: mongodb
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "1"
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"name":"food-backend","namespace":"blue"},"spec":{"replicas":2,"selector":{"matchLabels":{"app":"food-backend"}},"template":{"metadata":{"labels":{"app":"food-backend"}},"spec":{"containers":[{"env":[{"name":"PORT","valueFrom":{"configMapKeyRef":{"key":"PORT","name":"food-config"}}},{"name":"MONGO_URL","valueFrom":{"configMapKeyRef":{"key":"MONGO_URL","name":"food-config"}}},{"name":"FRONTEND_URL","valueFrom":{"configMapKeyRef":{"key":"FRONTEND_URL","name":"food-config"}}},{"name":"JWT_SECRET","valueFrom":{"secretKeyRef":{"key":"JWT_SECRET","name":"food-secret"}}},{"name":"MONGO_USERNAME","valueFrom":{"secretKeyRef":{"key":"MONGO_USERNAME","name":"food-secret"}}},{"name":"MONGO_PASSWORD","valueFrom":{"secretKeyRef":{"key":"MONGO_PASSWORD","name":"food-secret"}}}],"image":"thabith12/food-backend:v5","imagePullPolicy":"IfNotPresent","name":"backend","ports":[{"containerPort":4000}],"resources":{"limits":{"cpu":"500m","memory":"512Mi"},"requests":{"cpu":"250m","memory":"256Mi"}}}]}}}}
+    creationTimestamp: "2026-08-09T16:48:33Z"
+    generation: 1
+    name: food-backend
+    namespace: blue
+    resourceVersion: "30630"
+    uid: 131de24e-5578-4ede-86c4-ab4cc02be8f7
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 2
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: food-backend
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        labels:
+          app: food-backend
+      spec:
+        containers:
+        - env:
+          - name: PORT
+            valueFrom:
+              configMapKeyRef:
+                key: PORT
+                name: food-config
+          - name: MONGO_URL
+            valueFrom:
+              configMapKeyRef:
+                key: MONGO_URL
+                name: food-config
+          - name: FRONTEND_URL
+            valueFrom:
+              configMapKeyRef:
+                key: FRONTEND_URL
+                name: food-config
+          - name: JWT_SECRET
+            valueFrom:
+              secretKeyRef:
+                key: JWT_SECRET
+                name: food-secret
+          - name: MONGO_USERNAME
+            valueFrom:
+              secretKeyRef:
+                key: MONGO_USERNAME
+                name: food-secret
+          - name: MONGO_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: MONGO_PASSWORD
+                name: food-secret
+          image: thabith12/food-backend:v5
+          imagePullPolicy: IfNotPresent
+          name: backend
+          ports:
+          - containerPort: 4000
+            protocol: TCP
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+            requests:
+              cpu: 250m
+              memory: 256Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 2
+    conditions:
+    - lastTransitionTime: "2026-08-09T16:48:41Z"
+      lastUpdateTime: "2026-08-09T16:48:41Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2026-08-09T16:48:33Z"
+      lastUpdateTime: "2026-08-09T16:48:41Z"
+      message: ReplicaSet "food-backend-756586745" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 1
+    readyReplicas: 2
+    replicas: 2
+    updatedReplicas: 2
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "1"
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"name":"food-frontend","namespace":"blue"},"spec":{"replicas":2,"selector":{"matchLabels":{"app":"food-frontend"}},"template":{"metadata":{"labels":{"app":"food-frontend"}},"spec":{"containers":[{"env":[{"name":"VITE_BACKEND_URL","value":"http://food-backend-service:4000"}],"image":"thabith12/food-frontend:v10","imagePullPolicy":"IfNotPresent","name":"frontend","ports":[{"containerPort":80}]}]}}}}
+    creationTimestamp: "2026-08-09T16:48:34Z"
+    generation: 1
+    name: food-frontend
+    namespace: blue
+    resourceVersion: "30656"
+    uid: 995b5a4c-f377-4d4a-a5ec-7f2de2108bcf
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 2
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: food-frontend
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        labels:
+          app: food-frontend
+      spec:
+        containers:
+        - env:
+          - name: VITE_BACKEND_URL
+            value: http://food-backend-service:4000
+          image: thabith12/food-frontend:v10
+          imagePullPolicy: IfNotPresent
+          name: frontend
+          ports:
+          - containerPort: 80
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 2
+    conditions:
+    - lastTransitionTime: "2026-08-09T16:48:48Z"
+      lastUpdateTime: "2026-08-09T16:48:48Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2026-08-09T16:48:34Z"
+      lastUpdateTime: "2026-08-09T16:48:48Z"
+      message: ReplicaSet "food-frontend-f48db5bb8" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 1
+    readyReplicas: 2
+    replicas: 2
+    updatedReplicas: 2
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "2"
+      deployment.kubernetes.io/max-replicas: "3"
+      deployment.kubernetes.io/revision: "1"
+    creationTimestamp: "2026-08-09T16:48:33Z"
+    generation: 1
+    labels:
+      app: food-backend
+      pod-template-hash: "756586745"
+    name: food-backend-756586745
+    namespace: blue
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: food-backend
+      uid: 131de24e-5578-4ede-86c4-ab4cc02be8f7
+    resourceVersion: "30629"
+    uid: 9fd1d667-1d33-4c82-8c92-193a75bf027f
+  spec:
+    replicas: 2
+    selector:
+      matchLabels:
+        app: food-backend
+        pod-template-hash: "756586745"
+    template:
+      metadata:
+        labels:
+          app: food-backend
+          pod-template-hash: "756586745"
+      spec:
+        containers:
+        - env:
+          - name: PORT
+            valueFrom:
+              configMapKeyRef:
+                key: PORT
+                name: food-config
+          - name: MONGO_URL
+            valueFrom:
+              configMapKeyRef:
+                key: MONGO_URL
+                name: food-config
+          - name: FRONTEND_URL
+            valueFrom:
+              configMapKeyRef:
+                key: FRONTEND_URL
+                name: food-config
+          - name: JWT_SECRET
+            valueFrom:
+              secretKeyRef:
+                key: JWT_SECRET
+                name: food-secret
+          - name: MONGO_USERNAME
+            valueFrom:
+              secretKeyRef:
+                key: MONGO_USERNAME
+                name: food-secret
+          - name: MONGO_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: MONGO_PASSWORD
+                name: food-secret
+          image: thabith12/food-backend:v5
+          imagePullPolicy: IfNotPresent
+          name: backend
+          ports:
+          - containerPort: 4000
+            protocol: TCP
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+            requests:
+              cpu: 250m
+              memory: 256Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 2
+    fullyLabeledReplicas: 2
+    observedGeneration: 1
+    readyReplicas: 2
+    replicas: 2
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "2"
+      deployment.kubernetes.io/max-replicas: "3"
+      deployment.kubernetes.io/revision: "1"
+    creationTimestamp: "2026-08-09T16:48:34Z"
+    generation: 1
+    labels:
+      app: food-frontend
+      pod-template-hash: f48db5bb8
+    name: food-frontend-f48db5bb8
+    namespace: blue
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: food-frontend
+      uid: 995b5a4c-f377-4d4a-a5ec-7f2de2108bcf
+    resourceVersion: "30655"
+    uid: 75cf2f04-c184-479b-ac94-ae057a03da42
+  spec:
+    replicas: 2
+    selector:
+      matchLabels:
+        app: food-frontend
+        pod-template-hash: f48db5bb8
+    template:
+      metadata:
+        labels:
+          app: food-frontend
+          pod-template-hash: f48db5bb8
+      spec:
+        containers:
+        - env:
+          - name: VITE_BACKEND_URL
+            value: http://food-backend-service:4000
+          image: thabith12/food-frontend:v10
+          imagePullPolicy: IfNotPresent
+          name: frontend
+          ports:
+          - containerPort: 80
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 2
+    fullyLabeledReplicas: 2
+    observedGeneration: 1
+    readyReplicas: 2
+    replicas: 2
+- apiVersion: apps/v1
+  kind: StatefulSet
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps/v1","kind":"StatefulSet","metadata":{"annotations":{},"name":"mongodb","namespace":"blue"},"spec":{"replicas":1,"selector":{"matchLabels":{"app":"mongodb"}},"serviceName":"mongodb-service","template":{"metadata":{"labels":{"app":"mongodb"}},"spec":{"containers":[{"env":[{"name":"MONGO_INITDB_ROOT_USERNAME","valueFrom":{"secretKeyRef":{"key":"MONGO_USERNAME","name":"food-secret"}}},{"name":"MONGO_INITDB_ROOT_PASSWORD","valueFrom":{"secretKeyRef":{"key":"MONGO_PASSWORD","name":"food-secret"}}}],"image":"mongo:7","imagePullPolicy":"IfNotPresent","name":"mongodb","ports":[{"containerPort":27017}],"volumeMounts":[{"mountPath":"/data/db","name":"mongodb-data"}]}],"volumes":[{"name":"mongodb-data","persistentVolumeClaim":{"claimName":"mongodb-storage"}}]}}}}
+    creationTimestamp: "2026-08-09T16:42:05Z"
+    generation: 1
+    name: mongodb
+    namespace: blue
+    resourceVersion: "30437"
+    uid: 7b4e39f2-a5f5-4ef0-8693-b75aa6fb6768
+  spec:
+    persistentVolumeClaimRetentionPolicy:
+      whenDeleted: Retain
+      whenScaled: Retain
+    podManagementPolicy: OrderedReady
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: mongodb
+    serviceName: mongodb-service
+    template:
+      metadata:
+        labels:
+          app: mongodb
+      spec:
+        containers:
+        - env:
+          - name: MONGO_INITDB_ROOT_USERNAME
+            valueFrom:
+              secretKeyRef:
+                key: MONGO_USERNAME
+                name: food-secret
+          - name: MONGO_INITDB_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: MONGO_PASSWORD
+                name: food-secret
+          image: mongo:7
+          imagePullPolicy: IfNotPresent
+          name: mongodb
+          ports:
+          - containerPort: 27017
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /data/db
+            name: mongodb-data
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: mongodb-data
+          persistentVolumeClaim:
+            claimName: mongodb-storage
+    updateStrategy:
+      rollingUpdate:
+        partition: 0
+      type: RollingUpdate
+  status:
+    availableReplicas: 1
+    collisionCount: 0
+    currentReplicas: 1
+    currentRevision: mongodb-58bbdffc64
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+    updateRevision: mongodb-58bbdffc64
+    updatedReplicas: 1
+kind: List
+metadata:
+  resourceVersion: ""

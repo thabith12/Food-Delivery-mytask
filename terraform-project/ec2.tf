@@ -13,7 +13,7 @@ resource "aws_instance" "bastion" {
 # Private EC2
 resource "aws_instance" "private" {
   ami                    = "ami-0cda11afd45b74b89"
-  instance_type          = "t3.micro"
+  instance_type          = "t3.small"
   subnet_id              = aws_subnet.private.id
   key_name               = "mykey"
   vpc_security_group_ids = [aws_security_group.private_sg.id]

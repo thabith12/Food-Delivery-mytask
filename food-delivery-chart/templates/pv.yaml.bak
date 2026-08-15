@@ -1,0 +1,21 @@
+{{- if eq .Values.mongodb.storageClass "local-storage" }}
+apiVersion: v1
+kind: PersistentVolume
+
+metadata:
+  name: mongo-pv
+
+spec:
+  capacity:
+    storage: 2Gi
+
+  accessModes:
+    - ReadWriteOnce
+
+  storageClassName: local-storage
+
+  persistentVolumeReclaimPolicy: Retain
+
+  hostPath:
+    path: /mnt/data/mongodb
+{{- end }}

@@ -67,8 +67,10 @@ mongodb:
   serviceName: mongodb-service
   servicePort: 27017
   pvcName: mongodb-storage
+  storageClass: gp3-csi
 
+namespace: green
 
 ingress:
   name: food-ingress
-  className: nginx
+  className: alb

@@ -3,7 +3,7 @@ kind: Service
 
 metadata:
   name: mongodb-service
-  namespace: food-app
+  namespace: {{ .Values.namespace }}
 
 spec:
   clusterIP: None

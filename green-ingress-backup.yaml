@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  creationTimestamp: "2026-08-09T19:14:24Z"
+  generation: 1
+  name: food-ingress
+  namespace: green
+  resourceVersion: "11638"
+  uid: 0e14da2e-615d-45ae-b660-001a7567a250
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: food-backend-service
+            port:
+              number: 4000
+        path: /api
+        pathType: Prefix
+      - backend:
+          service:
+            name: food-frontend-service
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+status:
+  loadBalancer:
+    ingress:
+    - hostname: localhost

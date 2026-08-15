@@ -2,14 +2,14 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 
 metadata:
-  name: mongodb-storage
-  namespace: food-app
+  name: {{ .Values.mongodb.pvcName }}
+  namespace: {{ .Values.namespace }}
 
 spec:
   accessModes:
     - ReadWriteOnce
 
-  storageClassName: local-storage
+  storageClassName: {{ .Values.mongodb.storageClass }}
 
   resources:
     requests:
